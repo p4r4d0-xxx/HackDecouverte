@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/accueil.css">
     <title>flourish.com</title>
+    <style>
+        /* Style pour l'image dans la carte */
+        .feature-card img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Style pour le logo */
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -27,10 +46,21 @@
             La plateforme ultime pour les étudiants qui veulent améliorer leur routine quotidienne. 
             Suivez vos habitudes, maintenez votre motivation et débloquez des succès!
         </p>
-        
-        <div class="cta-buttons">
-            <a href="tracker.html" class="btn btn-primary"> Commencer maintenant</a>
-            <a href="#features" class="btn btn-secondary">En savoir plus</a>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Suivi Simple</h3>
+                <p>Enregistrez vos habitudes quotidiennes en un clic. Interface intuitive conçue pour les étudiants occupés.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Séries Motivantes</h3>
+                <img src="images/chat_image_2.png" alt="bee energy">
+            </div>
+
+            <div class="feature-card">
+                <h3>Succès & Récompenses</h3>
+                <img src="images/chatgpt_image.png" alt="imagerocks">
+            </div>
         </div>
     </div>
 
