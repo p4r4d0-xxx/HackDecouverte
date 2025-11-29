@@ -10,7 +10,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
-            <h1>Flourish</h1>
+            <img src="images/Untitled design.png" alt="Flourish Logo">
         </div>
         <ul class="nav-links">
             <li><a href="#features">Fonctionnalités</a></li>
@@ -21,7 +21,7 @@
 
     <!-- Header/Hero Section -->
     <div class="header">
-        <h2>Welcome [name]</h2>
+        <h2>Welcome <span id="userName">[name]</span>!</h2>
         <p>Construisez de meilleures habitudes, un jour à la fois!</p>
         <p class="subtitle">
             La plateforme ultime pour les étudiants qui veulent améliorer leur routine quotidienne. 
@@ -29,14 +29,14 @@
         </p>
         
         <div class="cta-buttons">
-            <a href="tracker.html" class="btn btn-primary">🚀 Commencer maintenant</a>
+            <a href="tracker.html" class="btn btn-primary"> Commencer maintenant</a>
             <a href="#features" class="btn btn-secondary">En savoir plus</a>
         </div>
     </div>
 
     <!-- Section Fonctionnalités -->
     <section class="features" id="features">
-        <h2>Pourquoi HabitBuddy?</h2>
+        <h2>Pourquoi Flourish?</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <h3>Suivi Simple</h3>
@@ -56,6 +56,13 @@
     </section>
 
     <script>
+        // Afficher le nom de l'utilisateur connecté
+        const user = localStorage.getItem('flourish_current_user');
+        if (user) {
+            const userData = JSON.parse(user);
+            document.getElementById('userName').textContent = userData.firstname;
+        }
+
         // Smooth scroll pour les liens d'ancrage
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {

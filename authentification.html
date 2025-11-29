@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/authentification.css">
     <title>flourish.com</title>
 </head>
+<!-- to connect to an acc use for example email: "jean@test.com",
+                        password: "password123" -->
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -129,6 +131,55 @@
             localStorage.setItem('flourish_users', JSON.stringify(users));
         }
 
+        // Initialiser avec des utilisateurs de test (OPTIONNEL - pour démo)
+        function initializeTestUsers() {
+            const users = getUsers();
+            
+            // Si aucun utilisateur n'existe, créer des comptes de test
+            if (users.length === 0) {
+                const testUsers = [
+                    {
+                        id: 1,
+                        firstname: "Jean",
+                        lastname: "Dupont",
+                        age: 22,
+                        email: "jean@test.com",
+                        password: "password123",
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        firstname: "Marie",
+                        lastname: "Martin",
+                        age: 20,
+                        email: "marie@test.com",
+                        password: "password123",
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 3,
+                        firstname: "Admin",
+                        lastname: "User",
+                        age: 25,
+                        email: "admin@flourish.com",
+                        password: "admin123",
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                
+                saveUsers(testUsers);
+                console.log("✅ Utilisateurs de test créés:");
+                console.log("📧 jean@test.com / password123");
+                console.log("📧 marie@test.com / password123");
+                console.log("📧 admin@flourish.com / admin123");
+            }
+        }
+
+        // Appeler au chargement de la page
+        window.addEventListener('DOMContentLoaded', function() {
+            initializeTestUsers();
+        });
+
         function saveCurrentUser(user) {
             localStorage.setItem('flourish_current_user', JSON.stringify(user));
         }
@@ -228,7 +279,7 @@
                 saveCurrentUser(user);
                 showNotification('Connexion réussie!', `Bienvenue ${user.firstname}! Redirection...`, 'success');
                 setTimeout(() => {
-                    window.location.href = 'tracker.html'; // Rediriger vers l'application
+                    window.location.href = 'accueil.html'; // Rediriger vers l'application
                 }, 1500);
             } else {
                 showNotification('Erreur de connexion', 'Email ou mot de passe incorrect', 'error');
@@ -314,7 +365,7 @@
             showNotification('Compte créé!', `Bienvenue ${firstname}! Votre compte a été créé avec succès.`, 'success');
             
             setTimeout(() => {
-                window.location.href = 'tracker.html'; // Rediriger vers l'application
+                window.location.href = 'accueil.html'; // Rediriger vers l'application
             }, 1500);
         }
 

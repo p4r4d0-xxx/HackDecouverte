@@ -13,7 +13,17 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.logo img {
+    height: 90px;  /* Ajustez la taille selon vos besoins */
+    width: auto;
+    cursor: pointer;
+}
 
+/* Optionnel: effet hover */
+.logo img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
 .logo {
     display: flex;
     align-items: center;
