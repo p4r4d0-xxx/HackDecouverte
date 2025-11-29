@@ -1,3 +1,252 @@
-.header{
-    background-color: rgb(144, 169, 245);
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo img {
+    height: 90px;  /* Ajustez la taille selon vos besoins */
+    width: auto;
+    cursor: pointer;
+}
+
+/* Optionnel: effet hover */
+.logo img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 2.5em;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { 
+        transform: translateY(0); 
+    }
+    50% { 
+        transform: translateY(-10px); 
+    }
+}
+
+.logo h1 {
+    font-size: 2em;
+    color: #667eea;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #667eea;
+}
+
+/* Header/Hero Section */
+.header {
+    background: linear-gradient(135deg, rgb(144, 169, 245) 0%, rgb(100, 130, 220) 100%);
+    text-align: center;
+    padding: 120px 20px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.header h2 {
+    font-size: 3.5em;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInDown 0.8s ease;
+}
+
+.header p {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s ease;
+}
+
+.header .subtitle {
+    font-size: 1.3em;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Boutons CTA */
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 18px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: white;
+    color: #667eea;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: #667eea;
+    transform: translateY(-3px);
+}
+
+/* Section fonctionnalités */
+.features {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: white;
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.feature-icon {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.feature-card h3 {
+    font-size: 1.6em;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    font-size: 1.05em;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .header h2 {
+        font-size: 2.5em;
+    }
+
+    .header p {
+        font-size: 1.2em;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
 };

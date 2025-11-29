@@ -4,15 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/accueil.css">
-    <title>HabitBuddy</title>
+    <title>flourish.com</title>
+    <style>
+        /* Style pour l'image dans la carte */
+        .feature-card img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Style pour le logo */
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <h2>HabitBuddy</h2>
-        <div class = "header">
-            <p>Welcome to HabitBuddy</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/Untitled design.png" alt="Flourish Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features">Fonctionnalités</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="tracker.html">Commencer</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header/Hero Section -->
+    <div class="header">
+        <h2>Welcome <span id="userName">[name]</span>!</h2>
+        <p>Construisez de meilleures habitudes, un jour à la fois!</p>
+        <p class="subtitle">
+            La plateforme ultime pour les étudiants qui veulent améliorer leur routine quotidienne. 
+            Suivez vos habitudes, maintenez votre motivation et débloquez des succès!
+        </p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Suivi Simple</h3>
+                <p>Enregistrez vos habitudes quotidiennes en un clic. Interface intuitive conçue pour les étudiants occupés.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Séries Motivantes</h3>
+                <img src="images/chat_image_2.png" alt="bee energy">
+            </div>
+
+            <div class="feature-card">
+                <h3>Succès & Récompenses</h3>
+                <img src="images/chatgpt_image.png" alt="imagerocks">
+            </div>
         </div>
     </div>
-    
+
+    <!-- Section Fonctionnalités -->
+    <section class="features" id="features">
+        <h2>Pourquoi Flourish?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Suivi Simple</h3>
+                <p>Enregistrez vos habitudes quotidiennes en un clic. Interface intuitive conçue pour les étudiants occupés.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Séries Motivantes</h3>
+                <p>Maintenez votre élan avec des séries de jours consécutifs. Visualisez vos progrès semaine après semaine.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Succès & Récompenses</h3>
+                <p>Débloquez des succès en atteignant vos objectifs. Célébrez chaque victoire, du premier pas au centurion!</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Afficher le nom de l'utilisateur connecté
+        const user = localStorage.getItem('flourish_current_user');
+        if (user) {
+            const userData = JSON.parse(user);
+            document.getElementById('userName').textContent = userData.firstname;
+        }
+
+        // Smooth scroll pour les liens d'ancrage
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
