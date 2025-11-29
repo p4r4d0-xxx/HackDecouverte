@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/streak.css">
+    <title>Flourish.com</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/Untitled design.png" alt="Flourish Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="tracker.html">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header/Hero Section -->
+    <div class="header">
+        <h3><span id="userName">[name]</span>'s Stats Chart!</h3>
+        
+        <!-- Status and Streak Side by Side -->
+        <div class="status-streak-container">
+            <div class="status-box">
+                <h1>Status</h1>
+                <div class="bee-image" id="beeImage">
+                    <img src="images/workerbee.png" alt="Worker Bee" id="beeImg">
+                </div>
+                <p id="beeStatus" style="font-size: 1.3em; color: #667eea; font-weight: 700;">Worker Bee</p>
+            </div>
+
+            <div class="streak-box">
+                <h1>Current Streak</h1>
+                <div class="streak-number" id="streakNumber">5</div>
+                <p class="streak-label">Days in a row! 🔥</p>
+            </div>
+        </div>
+
+        <!-- Bee Levels Info -->
+        <div class="bee-levels">
+            <p>
+                🐝 0-2 days streak = <strong>Drone Bee</strong> <br>
+                🐝 3-5 days streak = <strong>Worker Bee</strong> <br>
+                👑 6+ days streak = <strong>Queen Bee</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Rewards Section -->
+    <section class="features" id="features">
+        <h1>🏆 Rewards</h1>
+        
+        <!-- Rewards Horizontal -->
+        <div class="rewards-grid">
+            <div class="reward-card">
+                <img src="images/honeypot.png" alt="Honeypot reward">
+                <p>Obtain 8 hours of sleep</p>
+            </div>
+
+            <div class="reward-card">
+                <img src="images/honeypot.png" alt="Honeypot reward">
+                <p>Less than 1.5 hours of screen time</p>
+            </div>
+
+            <div class="reward-card">
+                <img src="images/honeypot.png" alt="Honeypot reward">
+                <p>An hour of exercise</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize test data for 7 days
+        function initializeTestData() {
+            const existingCompletions = localStorage.getItem('completions');
+            
+            // Only initialize if no data exists
+            if (!existingCompletions || Object.keys(JSON.parse(existingCompletions)).length === 0) {
+                const testHabits = [
+                    {
+                        id: '1',
+                        type: 'sleep',
+                        goal: '8 hours of sleep',
+                        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+                    },
+                    {
+                        id: '2',
+                        type: 'exercise',
+                        goal: 'Exercise 1 hour',
+                        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+                    },
+                    {
+                        id: '3',
+                        type: 'study',
+                        goal: 'Study 2 hours',
+                        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+                    }
+                ];
+
+                // Create completions for the last 7 days
+                const completions = {};
+                for (let i = 6; i >= 0; i--) {
+                    const date = new Date();
+                    date.setDate(date.getDate() - i);
+                    const dateKey = date.toISOString().split('T')[0];
+                    
+                    // Mark all habits as completed for each day
+                    testHabits.forEach(habit => {
+                        completions[`${habit.id}-${dateKey}`] = {
+                            habitId: habit.id,
+                            date: dateKey,
+                            completedAt: new Date(date.getTime() + Math.random() * 12 * 60 * 60 * 1000).toISOString()
+                        };
+                    });
+                }
+
+                // Save test data
+                localStorage.setItem('habits', JSON.stringify(testHabits));
+                localStorage.setItem('completions', JSON.stringify(completions));
+                
+                console.log('✅ 7 days of test data created!');
+                console.log(`📊 Total completions: ${Object.keys(completions).length}`);
+            }
+        }
+
+        // Display the logged-in user's name
+        const user = localStorage.getItem('flourish_current_user');
+        if (user) {
+            const userData = JSON.parse(user);
+            document.getElementById('userName').textContent = userData.firstname;
+        }
+
+        // Calculate current streak
+        function calculateStreak() {
+            const completions = localStorage.getItem('completions');
+            if (!completions) return 0;
+            
+            const completionsData = JSON.parse(completions);
+            const habits = localStorage.getItem('habits');
+            if (!habits) return 0;
+            
+            const habitsData = JSON.parse(habits);
+            if (habitsData.length === 0) return 0;
+            
+            // Calculate streak for the first habit (or you can calculate max streak)
+            let streak = 0;
+            let currentDate = new Date();
+            
+            while (true) {
+                const dateKey = currentDate.toISOString().split('T')[0];
+                const completionKey = `${habitsData[0].id}-${dateKey}`;
+                
+                if (completionsData[completionKey]) {
+                    streak++;
+                    currentDate.setDate(currentDate.getDate() - 1);
+                } else {
+                    break;
+                }
+            }
+            
+            return streak;
+        }
+
+        // Update bee status based on streak
+        function updateBeeStatus(streak) {
+            const beeImg = document.getElementById('beeImg');
+            const beeStatus = document.getElementById('beeStatus');
+            
+            if (streak >= 6) {
+                beeImg.src = 'images/queenbee.png';
+                beeImg.alt = 'Queen Bee';
+                beeStatus.textContent = 'Queen Bee';
+                beeStatus.style.color = '#fbbf24';
+            } else if (streak >= 3) {
+                beeImg.src = 'images/workerbee.png';
+                beeImg.alt = 'Worker Bee';
+                beeStatus.textContent = 'Worker Bee';
+                beeStatus.style.color = '#667eea';
+            } else {
+                beeImg.src = 'images/dronebee.png';
+                beeImg.alt = 'Drone Bee';
+                beeStatus.textContent = 'Drone Bee';
+                beeStatus.style.color = '#94a3b8';
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            // Initialize test data first
+            initializeTestData();
+            
+            // Calculate and display streak
+            const streak = calculateStreak();
+            document.getElementById('streakNumber').textContent = streak;
+            updateBeeStatus(streak);
+            
+            console.log(`🔥 Current streak: ${streak} days`);
+        });
+    </script>
+</body>
+</html>
