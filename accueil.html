@@ -4,26 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/accueil.css">
-    <title>flourish.com</title>
-    <style>
-        /* Style pour l'image dans la carte */
-        .feature-card img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 15px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Style pour le logo */
-        .logo img {
-            height: 60px;
-            width: auto;
-        }
-    </style>
+    <title>Flourish.com</title>
 </head>
 <body>
     <!-- Navigation -->
@@ -32,68 +13,72 @@
             <img src="images/Untitled design.png" alt="Flourish Logo">
         </div>
         <ul class="nav-links">
-            <li><a href="#features">Fonctionnalités</a></li>
-            <li><a href="#about">À propos</a></li>
-            <li><a href="tracker.html">Commencer</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="tracker.html">Get Started</a></li>
         </ul>
     </nav>
 
     <!-- Header/Hero Section -->
     <div class="header">
         <h2>Welcome <span id="userName">[name]</span>!</h2>
-        <p>Construisez de meilleures habitudes, un jour à la fois!</p>
+        <p>Build better habits, one day at a time!</p>
         <p class="subtitle">
-            La plateforme ultime pour les étudiants qui veulent améliorer leur routine quotidienne. 
-            Suivez vos habitudes, maintenez votre motivation et débloquez des succès!
+            The ultimate platform for students who want to improve their daily routine. 
+            Track your habits, stay motivated, and unlock achievements!
         </p>
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Suivi Simple</h3>
-                <p>Enregistrez vos habitudes quotidiennes en un clic. Interface intuitive conçue pour les étudiants occupés.</p>
+                <h3>Progress Graph</h3>
+                <img src="images/image_graph.png" alt="Progress graph">
+                <p>This graph represents the evolution of your stats over time.</p>
             </div>
 
             <div class="feature-card">
-                <h3>Séries Motivantes</h3>
-                <img src="images/chat_image_2.png" alt="bee energy">
+                <h3>Streaks & Rewards</h3>
+                <img src="images/chat_image_2.png" alt="Bee energy rewards">
+                <p>Check out your streaks and your rewards! Keep the momentum going!</p>
             </div>
 
             <div class="feature-card">
-                <h3>Succès & Récompenses</h3>
-                <img src="images/chatgpt_image.png" alt="imagerocks">
+                <h3>Tips & Advice</h3>
+                <img src="images/chatgpt_image.png" alt="Wellness tips">
+                <button class="quiz-button" onclick="alert(' Mood quiz coming soon! We will help you understand your emotions better. ')">   How are you feeling today?</button>
+                <p>Take the quiz above to get a better understanding of your emotions.</p>
             </div>
         </div>
     </div>
 
-    <!-- Section Fonctionnalités -->
+    <!-- Features Section -->
     <section class="features" id="features">
-        <h2>Pourquoi Flourish?</h2>
+        <h2>Why choose Flourish?</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <h3>Suivi Simple</h3>
-                <p>Enregistrez vos habitudes quotidiennes en un clic. Interface intuitive conçue pour les étudiants occupés.</p>
+                <h3>Simple Tracking</h3>
+                <p>Record your daily habits with one click. Intuitive interface designed for busy students.</p>
             </div>
 
             <div class="feature-card">
-                <h3>Séries Motivantes</h3>
-                <p>Maintenez votre élan avec des séries de jours consécutifs. Visualisez vos progrès semaine après semaine.</p>
+                <h3>Motivating Streaks</h3>
+                <p>Maintain your momentum with consecutive day streaks. Visualize your progress week after week.</p>
             </div>
 
             <div class="feature-card">
-                <h3>Succès & Récompenses</h3>
-                <p>Débloquez des succès en atteignant vos objectifs. Célébrez chaque victoire, du premier pas au centurion!</p>
+                <h3>Achievements & Rewards</h3>
+                <p>Unlock achievements as you reach your goals. Celebrate every victory, from the first step to centurion!</p>
             </div>
         </div>
     </section>
 
     <script>
-        // Afficher le nom de l'utilisateur connecté
+        // Display the logged-in user's name
         const user = localStorage.getItem('flourish_current_user');
         if (user) {
             const userData = JSON.parse(user);
             document.getElementById('userName').textContent = userData.firstname;
         }
 
-        // Smooth scroll pour les liens d'ancrage
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
